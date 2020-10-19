@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao {
                 transaction.rollback();
             }
             throw new DataProcessingException("Can't insert user Entity with email = "
-                    + user.getEmail(), e);
+                    + user, e);
         } finally {
             if (session != null) {
                 session.close();
