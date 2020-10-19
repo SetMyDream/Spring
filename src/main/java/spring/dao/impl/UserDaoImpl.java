@@ -14,7 +14,7 @@ import spring.model.User;
 public class UserDaoImpl implements UserDao {
     private final SessionFactory sessionFactory;
 
-    public UserDaoImpl(SessionFactory sessionFactory) {
+    private UserDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
@@ -44,7 +44,7 @@ public class UserDaoImpl implements UserDao {
     public List<User> listUsers() {
         try (Session session = sessionFactory.openSession()) {
             Query<User> query = sessionFactory.openSession()
-                    .createQuery("from User", User.class);
+                    .createQuery("FROM User", User.class);
             return query.getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get all users", e);
