@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't insert user Entity with email = "
+            throw new DataProcessingException("Can't insert user Entity = "
                     + user, e);
         } finally {
             if (session != null) {
