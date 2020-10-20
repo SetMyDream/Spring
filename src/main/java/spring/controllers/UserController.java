@@ -2,12 +2,12 @@ package spring.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import spring.dto.UserResponseDto;
 import spring.model.User;
 import spring.service.UserService;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,11 +30,10 @@ public class UserController {
     }
 
     @GetMapping(value = "/{userId}")
-    public UserResponseDto get(Long userId) {
-        return getUserDto(userService.getById(userId));
+    public UserResponseDto get(@PathVariable String userId) {
+        return getUserDto(userService.getById(Long.parseLong(userId)));
     };
 
-    @GetMapping(value = "/")
     List<UserResponseDto> getAll() {
         return userService.listUsers().stream()
                 .map(this::getUserDto)
