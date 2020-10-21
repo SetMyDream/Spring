@@ -1,6 +1,8 @@
 package spring.dao.impl;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -52,11 +54,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getById(Long userId) {
+    public Optional<User> getById(Long userId) {
         try (Session session = sessionFactory.openSession()) {
             Query<User> query = session.createQuery("FROM User WHERE id = :userId", User.class);
             query.setParameter("userId", userId);
-            return query.getSingleResult();
+            return Optional.ofNullable(query.getSingleResult());
         } catch (Exception e) {
             throw new RuntimeException("Can`t find user with id " + userId, e);
         }
