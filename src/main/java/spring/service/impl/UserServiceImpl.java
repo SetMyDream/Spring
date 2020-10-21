@@ -1,7 +1,6 @@
 package spring.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
 import spring.dao.UserDao;
 import spring.model.User;
@@ -26,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getById(Long userId) {
-        return userDao.getById(userId);
+    public User getById(Long userId) {
+        return userDao.getById(userId).get();
     }
 }

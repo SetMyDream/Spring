@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping(value = "/{userId}")
     public UserResponseDto get(@PathVariable String userId) {
-        return getUserDto(userService.getById(Long.parseLong(userId)).get());
+        return getUserDto(userService.getById(Long.parseLong(userId)));
     }
 
     List<UserResponseDto> getAll() {
