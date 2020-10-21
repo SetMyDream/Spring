@@ -18,4 +18,10 @@ public class User {
     private String email;
     private String password;
     private byte[] salt;
+
+    public User(String name, String email, String password) {
+        this.password = password;
+        this.name = name;
+        this.email = email;
+    }
 }
